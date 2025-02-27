@@ -14,7 +14,7 @@ pipeline {
                 dir('service-discovery') {
                     script {
                         // Compiler le service service-discovery
-                       bat 'mvn clean install -DskipTests'
+                       bat 'mvn clean package -DskipTests'
                     }
                 }
             }
@@ -25,7 +25,7 @@ pipeline {
                 dir('customer-service') {
                     script {
                         // Compiler le service customer
-                         bat 'mvn clean install -DskipTests'
+                         bat 'mvn clean package -DskipTests'
                     }
                 }
             }
@@ -36,7 +36,7 @@ pipeline {
                 dir('product-service') {
                     script {
                         // Compiler le service product
-                       bat 'mvn clean install -DskipTests'
+                       bat 'mvn clean package -DskipTests'
                     }
                 }
             }
@@ -47,7 +47,7 @@ pipeline {
                 dir('gateway-service') {
                     script {
                         // Compiler le service gateway
-                         bat 'mvn clean install -DskipTests'
+                         bat 'mvn clean package -DskipTests'
                     }
                 }
             }
