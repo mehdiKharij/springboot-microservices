@@ -14,7 +14,7 @@ pipeline {
                 dir('service-discovery') {
                     script {
                         // Compiler le service service-discovery
-                       bat 'mvn spring-boot:run
+                       bat 'mvn spring-boot:run'
 '
                     }
                 }
