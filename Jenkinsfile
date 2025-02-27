@@ -26,7 +26,7 @@ pipeline {
                 dir('customer-service') {
                     script {
                         // Compiler le service customer
-                         bat 'mvn spring-boot:run
+                         bat 'mvn spring-boot:run'
 '
                     }
                 }
@@ -38,7 +38,7 @@ pipeline {
                 dir('product-service') {
                     script {
                         // Compiler le service product
-                       bat 'mvn spring-boot:run
+                       bat 'mvn spring-boot:run'
 '
                     }
                 }
@@ -50,7 +50,7 @@ pipeline {
                 dir('gateway-service') {
                     script {
                         // Compiler le service gateway
-                         bat 'mvn spring-boot:run
+                         bat 'mvn spring-boot:run'
 '
                     }
                 }
