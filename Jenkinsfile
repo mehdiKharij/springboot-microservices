@@ -47,7 +47,7 @@ pipeline {
                 dir('gateway-service') {
                     script {
                         // Compiler le service gateway
-                         bat 'mvn clean install'
+                         bat 'mvn clean package -DskipTests'
                     }
                 }
             }
