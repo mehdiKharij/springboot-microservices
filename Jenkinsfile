@@ -16,7 +16,7 @@ pipeline {
                 dir('customer-service') {
                     script {
                         // Compiler le service customer
-                        bat "mvn clean install"
+                         bat '"C:\\Program Files\\apache-maven-3.9.9\\bin\\mvn" clean install'
                     }
                 }
             }
@@ -27,7 +27,7 @@ pipeline {
                 dir('product-service') {
                     script {
                         // Compiler le service product
-                       bat "mvn clean install"
+                       bat '"C:\\Program Files\\apache-maven-3.9.9\\bin\\mvn" clean install'
                     }
                 }
             }
@@ -38,7 +38,7 @@ pipeline {
                 dir('service-discovery') {
                     script {
                         // Compiler le service service-discovery
-                        bat "mvn clean install"
+                        bat '"C:\\Program Files\\apache-maven-3.9.9\\bin\\mvn" clean install'
                     }
                 }
             }
@@ -49,7 +49,7 @@ pipeline {
                 dir('gateway-service') {
                     script {
                         // Compiler le service gateway
-                        bat "mvn clean install"
+                         bat '"C:\\Program Files\\apache-maven-3.9.9\\bin\\mvn" clean install'
                     }
                 }
             }
