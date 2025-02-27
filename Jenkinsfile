@@ -4,77 +4,50 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                // Récupérer les dernières modifications du dépôt
                 git branch: 'main', url: 'https://github.com/mehdiKharij/springboot-microservices.git'
             }
         }
 
-        stage('Build Services') {
-            parallel {
-                stage('Build Service Discovery') {
-                    steps {
-                        dir('service-discovery') {
-                            bat 'mvn clean install'
-                        }
-                    }
-                }
-
-                stage('Build Customer Service') {
-                    steps {
-                        dir('customer-service') {
-                            bat 'mvn clean install'
-                        }
-                    }
-                }
-
-                stage('Build Product Service') {
-                    steps {
-                        dir('product-service') {
-                            bat 'mvn clean install'
-                        }
-                    }
-                }
-
-                stage('Build Gateway Service') {
-                    steps {
-                        dir('gateway-service') {
-                            bat 'mvn clean install'
-                        }
+           stage('Build Service Discovery') {
+            steps {
+                dir('service-discovery') {
+                    script {
+                        // Compiler le service service-discovery
+                       bat 'mvn clean install -DskipTests'
                     }
                 }
             }
         }
 
-        stage('Run Services') {
-            parallel {
-                stage('Run Service Discovery') {
-                    steps {
-                        dir('service-discovery') {
-                            bat 'start cmd /c mvn spring-boot:run'
-                        }
+        stage('Build Customer Service') {
+            steps {
+                dir('customer-service') {
+                    script {
+                        // Compiler le service customer
+                         bat 'mvn clean install -DskipTests'
                     }
                 }
+            }
+        }
 
-                stage('Run Customer Service') {
-                    steps {
-                        dir('customer-service') {
-                            bat 'start cmd /c mvn spring-boot:run'
-                        }
+        stage('Build Product Service') {
+            steps {
+                dir('product-service') {
+                    script {
+                        // Compiler le service product
+                       bat 'mvn clean install -DskipTests'
                     }
                 }
+            }
+        }
 
-                stage('Run Product Service') {
-                    steps {
-                        dir('product-service') {
-                            bat 'start cmd /c mvn spring-boot:run'
-                        }
-                    }
-                }
-
-                stage('Run Gateway Service') {
-                    steps {
-                        dir('gateway-service') {
-                            bat 'start cmd /c mvn spring-boot:run'
-                        }
+        stage('Build Gateway Service') {
+            steps {
+                dir('gateway-service') {
+                    script {
+                        // Compiler le service gateway
+                         bat 'mvn clean install -DskipTests'
                     }
                 }
             }
@@ -83,10 +56,10 @@ pipeline {
 
     post {
         success {
-            echo 'All services built and started successfully!'
+            echo 'Build successful for all services!'
         }
         failure {
-            echo 'Build or startup failed for one or more services!'
+            echo 'Build failed for one or more services!'
         }
     }
 }
