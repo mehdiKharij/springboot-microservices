@@ -7,7 +7,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Récupérer les dernières modifications du dépôt
-                git branch: 'main', url: 'https://github.com/mehdiKharij/microservices-springboot.git'
+                git branch: 'main', url: 'https://github.com/mehdiKharij/springboot-microservices.git'
             }
         }
 
