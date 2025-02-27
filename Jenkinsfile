@@ -9,6 +9,17 @@ pipeline {
             }
         }
 
+           stage('Build Service Discovery') {
+            steps {
+                dir('service-discovery') {
+                    script {
+                        // Compiler le service service-discovery
+                       bat 'mvn clean install'
+                    }
+                }
+            }
+        }
+
         stage('Build Customer Service') {
             steps {
                 dir('customer-service') {
@@ -25,17 +36,6 @@ pipeline {
                 dir('product-service') {
                     script {
                         // Compiler le service product
-                       bat 'mvn clean package -DskipTests'
-                    }
-                }
-            }
-        }
-
-        stage('Build Service Discovery') {
-            steps {
-                dir('service-discovery') {
-                    script {
-                        // Compiler le service service-discovery
                        bat 'mvn clean package -DskipTests'
                     }
                 }
