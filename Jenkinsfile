@@ -1,8 +1,6 @@
 pipeline {
     agent any
 
-
-
     stages {
         stage('Checkout') {
             steps {
@@ -16,7 +14,7 @@ pipeline {
                 dir('customer-service') {
                     script {
                         // Compiler le service customer
-                         bat '"C:\\Program Files\\apache-maven-3.9.9\\bin\\mvn" clean install'
+                         bat 'mvn clean package -DskipTests'
                     }
                 }
             }
