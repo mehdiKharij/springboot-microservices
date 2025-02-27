@@ -25,7 +25,7 @@ pipeline {
                 dir('product-service') {
                     script {
                         // Compiler le service product
-                       bat '"C:\\Program Files\\apache-maven-3.9.9\\bin\\mvn" clean install'
+                       bat 'mvn clean package -DskipTests'
                     }
                 }
             }
@@ -36,7 +36,7 @@ pipeline {
                 dir('service-discovery') {
                     script {
                         // Compiler le service service-discovery
-                        bat '"C:\\Program Files\\apache-maven-3.9.9\\bin\\mvn" clean install'
+                       bat 'mvn clean package -DskipTests'
                     }
                 }
             }
@@ -47,7 +47,7 @@ pipeline {
                 dir('gateway-service') {
                     script {
                         // Compiler le service gateway
-                         bat '"C:\\Program Files\\apache-maven-3.9.9\\bin\\mvn" clean install'
+                         bat 'mvn clean package -DskipTests'
                     }
                 }
             }
