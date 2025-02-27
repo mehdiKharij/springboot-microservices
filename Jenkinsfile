@@ -9,45 +9,49 @@ pipeline {
             }
         }
 
-        stage('Build Service Discovery') {
-            steps {
-                dir('service-discovery') {
-                    script {
-                        // Compiler le service service-discovery
-                        bat 'mvn spring-boot:run'
+        stage('Build Services') {
+            parallel {
+                stage('Build Service Discovery') {
+                    steps {
+                        dir('service-discovery') {
+                            script {
+                                // Compiler le service service-discovery
+                                bat 'mvn spring-boot:run'
+                            }
+                        }
                     }
                 }
-            }
-        }
 
-        stage('Build Customer Service') {
-            steps {
-                dir('customer-service') {
-                    script {
-                        // Compiler le service customer
-                        bat 'mvn spring-boot:run'
+                stage('Build Customer Service') {
+                    steps {
+                        dir('customer-service') {
+                            script {
+                                // Compiler le service customer
+                                bat 'mvn spring-boot:run'
+                            }
+                        }
                     }
                 }
-            }
-        }
 
-        stage('Build Product Service') {
-            steps {
-                dir('product-service') {
-                    script {
-                        // Compiler le service product
-                        bat 'mvn spring-boot:run'
+                stage('Build Product Service') {
+                    steps {
+                        dir('product-service') {
+                            script {
+                                // Compiler le service product
+                                bat 'mvn spring-boot:run'
+                            }
+                        }
                     }
                 }
-            }
-        }
 
-        stage('Build Gateway Service') {
-            steps {
-                dir('gateway-service') {
-                    script {
-                        // Compiler le service gateway
-                        bat 'mvn spring-boot:run'
+                stage('Build Gateway Service') {
+                    steps {
+                        dir('gateway-service') {
+                            script {
+                                // Compiler le service gateway
+                                bat 'mvn spring-boot:run'
+                            }
+                        }
                     }
                 }
             }
