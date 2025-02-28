@@ -1,7 +1,9 @@
 package com.example.customerservice.Controller;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,10 +23,26 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final ObjectMapper objectMapper;
+
+    public CustomerController(CustomerService customerService, KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
+        this.customerService = customerService;
+        this.kafkaTemplate = kafkaTemplate;
+        this.objectMapper = objectMapper;
+    }
+
     // Créer un nouveau client
     @PostMapping
-    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) throws Exception {
         Customer createdCustomer = customerService.CreateCustomer(customer);
+
+        // Convertir le client en JSON
+        String customerJson = objectMapper.writeValueAsString(createdCustomer);
+
+        // Publier l'événement Kafka
+        kafkaTemplate.send("customer-topic", customerJson);
+
         return ResponseEntity.ok(createdCustomer);
     }
 
