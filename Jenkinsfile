@@ -11,7 +11,7 @@ pipeline {
 
         stage('Build Services') {
             parallel {
-                stage('Build Service Discovery') {
+                stage('Run Service Discovery') {
                     steps {
                         dir('service-discovery') {
                             script {
@@ -22,7 +22,7 @@ pipeline {
                     }
                 }
 
-                stage('Build Customer Service') {
+                stage('Run Customer Service') {
                     steps {
                         dir('customer-service') {
                             script {
@@ -33,7 +33,7 @@ pipeline {
                     }
                 }
 
-                stage('Build Product Service') {
+                stage('Run Product Service') {
                     steps {
                         dir('product-service') {
                             script {
@@ -44,7 +44,7 @@ pipeline {
                     }
                 }
 
-                stage('Build Gateway Service') {
+                stage('Run Gateway Service') {
                     steps {
                         dir('gateway-service') {
                             script {
